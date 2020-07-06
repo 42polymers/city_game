@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 
 
 class Entry(models.Model):
-    image = models.ImageField(upload_to='src/web_client/client/media')
+    image = models.ImageField(upload_to='media')
     name = models.CharField(max_length=100)
     point = models.PointField()
     text = models.CharField(max_length=1000)
@@ -13,5 +13,7 @@ class Entry(models.Model):
         return list(getattr(self.point, 'coords', [])[::-1])
 
     def image_tag(self):
-        return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.image))
+        return mark_safe(f'<img src="/{self.image}" width="150" height="150" />')
 
+    image_tag.short_description = 'Thumb'
+    image_tag.allow_tags = True

@@ -1,5 +1,4 @@
 from django.contrib.gis import forms
-from django.utils.safestring import mark_safe
 
 from .localization import ADMIN
 
@@ -21,14 +20,6 @@ class EntryAdminForm(forms.ModelForm):
         super(EntryAdminForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].label = ADMIN.get(field)
-
-    # def image_preview(self, obj):
-    #     return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
-    #         url=obj.image.url,
-    #         width=obj.image.width,
-    #         height=obj.image.height,
-    #         )
-    # )
 
     def save(self, commit=True):
         instance = super(EntryAdminForm, self).save(commit=False)

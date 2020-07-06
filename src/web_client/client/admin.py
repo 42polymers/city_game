@@ -12,6 +12,7 @@ class EntryAdmin(OSMGeoAdmin):
     default_lon = 9230747
     default_lat = 7367716
     default_zoom = 12
+    list_display = ('image_tag',)
 
 
 admin.site.unregister(Group)

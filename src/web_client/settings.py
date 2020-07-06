@@ -123,3 +123,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'network_topology', 'static'),
 )
+
+MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__))
+MEDIA_URL = '/'

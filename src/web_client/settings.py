@@ -31,8 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
-    'web_client.client',
-    'web_client'
+    'src.web_client.client',
+    'src.web_client.system',
+    'src.web_client',
 ]
 
 MIDDLEWARE = [

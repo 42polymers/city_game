@@ -8,7 +8,7 @@ import django
 django.setup()
 
 from src.telegram.localization import *
-from src.telegram.settings import bot_id
+from src.telegram.settings import bot_id, media
 from src.web_client.system.models import Team, User
 
 bot = telebot.TeleBot(bot_id)
@@ -20,7 +20,7 @@ PASSWORD = ''
 @bot.message_handler(content_types=['text'])
 def start(message):
     try:
-        user = User.objects.get(id=message.from_user.id)
+        user = User.objects.get(user_id=message.from_user.id)
     except User.DoesNotExist:
         return authorization(message)
     if user.role == User.ADMIN:
@@ -32,9 +32,9 @@ def start(message):
         key_rules = types.InlineKeyboardButton(text='Правила', callback_data='rules')
         key_status = types.InlineKeyboardButton(text='Статус', callback_data='status')
         keyboard.add(key_help, key_rules, key_status, key_answer)
-        team_obj = user.team
+
         try:
-            [0][1]
+            [0][0]
             # current_task = task_collection.find_one(
             #     {'_id': team_obj["tasks_ids"][team_obj["task_point"]]})
         except IndexError:
@@ -42,10 +42,12 @@ def start(message):
                                                         "'index out of range'. В любом случае - поздравляю)")
             return
         try:
-            img = open(f'media/tasks/{team_obj["tasks_ids"][team_obj["task_point"]]}.jpg', 'rb')
+            img = open(f'media/tasks/{user.team_id}.jpg', 'rb')
         except FileNotFoundError:
-            img = open(f'media/oops.jpg', 'rb')
-        bot.send_message(message.from_user.id, text=current_task["text"])
+            import pathlib
+            x=pathlib.Path().absolute()
+            img = open(f'{media}/oops.jpg', 'rb')
+        bot.send_message(message.from_user.id, text="text")
 
         bot.send_photo(message.from_user.id, img, reply_markup=keyboard)
 

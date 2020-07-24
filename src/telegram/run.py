@@ -9,7 +9,7 @@ django.setup()
 
 from src.telegram.localization import *
 from src.telegram.settings import bot_id, media
-from src.web_client.system.models import Team, User
+from src.web.system.models import Team, User
 
 bot = telebot.TeleBot(bot_id)
 

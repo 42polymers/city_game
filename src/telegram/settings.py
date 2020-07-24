@@ -10,4 +10,4 @@ conf.read(CONFIG_PATH)
 
 bot_id = conf['telegram']['BOT_ID']
 database = conf['database']
-media = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'web_client/media'))
+media = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'media'))

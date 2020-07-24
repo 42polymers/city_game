@@ -31,9 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
-    'src.web_client.client',
-    'src.web_client.system',
-    'src.web_client',
+    'src.web.client',
+    'src.web.system',
+    'src.web',
 ]
 
 MIDDLEWARE = [
@@ -46,12 +46,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'web_client.urls'
+ROOT_URLCONF = 'web.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'web_client', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'web', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'web_client.wsgi.application'
+WSGI_APPLICATION = 'web.wsgi.application'
 
 db = conf['database']
 DATABASES = {
@@ -125,5 +125,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'network_topology', 'static'),
 )
 
-MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__))
+# MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/'

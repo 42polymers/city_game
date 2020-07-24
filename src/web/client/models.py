@@ -3,11 +3,11 @@ from django.utils.safestring import mark_safe
 
 
 class Entry(models.Model):
-    image = models.ImageField(upload_to='media/images')
+    image = models.ImageField(upload_to='images')
     name = models.CharField(max_length=100)
     point = models.PointField()
     text = models.CharField(max_length=1000)
-    map_part = models.ImageField(upload_to='media/map_parts')
+    map_part = models.ImageField(upload_to='map_parts')
 
     @property
     def lat_lng(self):

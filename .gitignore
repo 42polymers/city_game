@@ -131,4 +131,5 @@ dmypy.json
 .idea
 
 world/
-src/web_client/media
+src/media/images
+src/media/map_parts
